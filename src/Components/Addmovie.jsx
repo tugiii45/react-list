@@ -27,6 +27,7 @@ function AddMovie({ addMovie }) {
   };
 
   return (
+    <>
     <form
       onSubmit={handleSubmit}
       className="bg-white shadow p-4 rounded-xl mb-6 flex flex-col gap-3"
@@ -70,6 +71,7 @@ function AddMovie({ addMovie }) {
         Add Movie
       </button>
     </form>
+    </>
   );
 }
 

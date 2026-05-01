@@ -7,11 +7,13 @@ function MovieList() {
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(true);
 
+
     useEffect(() => {
         const fetchMovies = async () => {
             try {
                 const response = await fetch(import.meta.env.VITE_API_URL);
                 const data = await response.json();
+                console.log("API DATA", data);
                 
                 setMovies(data.slice(0, 10));
                 setLoading(false);
