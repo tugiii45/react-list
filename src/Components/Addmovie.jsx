@@ -72,7 +72,7 @@ function AddMovie({ addMovie }) {
       </button>
     </form>
     </>
-  );
+  )
 }
 
 export default AddMovie;
