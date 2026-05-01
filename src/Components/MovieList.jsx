@@ -7,7 +7,6 @@ function MovieList() {
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(true);
 
-
     useEffect(() => {
         const fetchMovies = async () => {
             try {
