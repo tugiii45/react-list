@@ -48,7 +48,7 @@ function MovieList() {
             };
 return (
                     <div className="max-w-lg mx-auto p-4">
-                        <h1 className="text-2xl font-bold text-center mb-4">
+                        <h1 className="text-2xl font-bold text-center mb-4 text-white">
                             Movie Finder
                         </h1>
 
@@ -73,7 +73,7 @@ return (
                         </div>
                             
                         {movies.length === 0 && (
-                            <p className="text-center text-gray-500 mt-4">
+                            <p className="text-center text-gray-400 mt-4">
                                 Search for movies above!
                             </p>
                         )}
