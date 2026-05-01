@@ -1,78 +1,56 @@
-import React, { useState } from "react";
+import React from 'react';
 
-function AddMovie({ addMovie }) {
-  const [title, setTitle] = useState("");
-  const [genre, setGenre] = useState("");
-  const [year, setYear] = useState("");
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    // 🧠 simple validation
-    if (!title.trim() || !genre.trim()) return;
-
-    const newMovie = {
-      imdbID: Date.now().toString(),
-      Title: title,
-      Year: year,
-      Poster: "N/A",
-    };
-
-    addMovie(newMovie);
-
-    // reset form
-    setTitle("");
-    setGenre("");
-    setYear("");
-  };
-
+function Addmovie({
+  searchTerm,
+  setSearchTerm,
+  year,
+  setYear,
+  genre,
+  setGenre,
+  fetchMovies
+}) {
   return (
-    <>
-    <form
-      onSubmit={handleSubmit}
-      className="bg-white shadow p-4 rounded-xl mb-6 flex flex-col gap-3"
-    >
-      <h2 className="text-xl font-semibold text-center">
-        Add New Movie
+    <div className="bg-white p-4 rounded-lg border border-gray-300 mb-4">
+      <h2 className="text-xl font-bold text-center mb-4">
+        Search Movies
       </h2>
+      
+      <div className="flex flex-col gap-3">
+        <input
+          type="text"
+          placeholder="Movie title"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="border p-2 rounded w-full"
+        />
 
-      {/* Title */}
-      <input
-        className="border p-2 rounded"
-        type="text"
-        placeholder="Movie title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
+        <div className="flex gap-2">
+          <input
+            type="text"
+            placeholder="Year"
+            value={year}
+            onChange={(e) => setYear(e.target.value)}
+            className="border p-2 rounded flex-1"
+          />
 
-      {/* Genre */}
-      <input
-        className="border p-2 rounded"
-        type="text"
-        placeholder="Genre"
-        value={genre}
-        onChange={(e) => setGenre(e.target.value)}
-      />
+          <input
+            type="text"
+            placeholder="Genre"
+            value={genre}
+            onChange={(e) => setGenre(e.target.value)}
+            className="border p-2 rounded flex-1"
+          />
+        </div>
 
-      {/* Year */}
-      <input
-        className="border p-2 rounded"
-        type="number"
-        placeholder="Year (optional)"
-        value={year}
-        onChange={(e) => setYear(e.target.value)}
-      />
-
-      {/* Button */}
-      <button
-        type="submit"
-        className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition"
-      >
-        Add Movie
-      </button>
-    </form>
-    </>
-  )
+        <button 
+          onClick={fetchMovies}
+          className="bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
+        >
+          Search
+        </button>
+      </div>
+    </div>
+  );
 }
 
-export default AddMovie;
+export default Addmovie;
