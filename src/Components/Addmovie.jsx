@@ -12,10 +12,10 @@ function AddMovie({ addMovie }) {
     if (!title.trim() || !genre.trim()) return;
 
     const newMovie = {
-      id: Date.now(),
-      title,
-      genre,
-      year,
+      imdbID: Date.now().toString(),
+      Title: title,
+      Year: year,
+      Poster: "N/A",
     };
 
     addMovie(newMovie);

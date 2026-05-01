@@ -6,20 +6,26 @@ import MovieItem from './MovieItem'
 function MovieList() {
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [searchTerm, setSearchTerm] = useState('Reminders of Him');
 
     useEffect(() => {
         const fetchMovies = async () => {
             try {
-                const response = await fetch(import.meta.env.VITE_API_URL);
+                const response = await fetch(
+                `http://www.omdbapi.com/?s=${searchTerm}&apikey=1b0b0c7e`
+                );
+
+
                 const data = await response.json();
                 console.log("API DATA", data);
                 
-                setMovies(data.slice(0, 10));
+                setMovies(data.Search || []);
                 setLoading(false);
 
             } catch (error) {
                 console.error('Error fetching movies:', error);
-                setLoading(false);
+                setLoading(false); 
+
             }
             };
 
@@ -30,8 +36,8 @@ function MovieList() {
             setMovies((prev) => [movie, ...prev]);
         };
 
-        const deleteMovie = (id) => {
-        setMovies((prev) => prev.filter((movie) => movie.id !== id));
+const deleteMovie = (id) => {
+        setMovies((prev) => prev.filter((movie) => movie.imdbID !== id));
         };
 
         if (loading) {
@@ -55,9 +61,9 @@ function MovieList() {
                     </h1>
 
                     <Addmovie addMovie={addMovie} />
-                    {movies.map((movie, index) => (
+{movies.map((movie, index) => (
                         <MovieItem
-                            key={movie.id || index}
+                            key={movie.imdbID || index}
                             movie={movie}
                             deleteMovie={deleteMovie}
                             />

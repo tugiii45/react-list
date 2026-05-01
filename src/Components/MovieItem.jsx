@@ -6,24 +6,29 @@ function MovieItem({movie, deleteMovie}) {
     <>
     <div className='flex justify-between items-center bg-white shadow p-4 rounded-xl hover:shadow-lg transition'>
 
-        <div>
-            <h2 className='font-semibold text-lg'>
-                {movie.title}
-            </h2>
-
-            <p className='text-sm text-gray-500'>
-                {movie.genre ? movie.genre : 'Unknown Genre'}
-            </p>
-
-            {movie.year && (
-                <p className='text-xs text-gray-400'>
-                    {movie.year}
-                </p>
+        <div className='flex items-center gap-4'>
+            {movie.Poster && movie.Poster !== 'N/A' && (
+                <img 
+                    src={movie.Poster} 
+                    alt={movie.Title} 
+                    className='w-16 h-24 object-cover rounded'
+                />
             )}
+            <div>
+                <h2 className='font-semibold text-lg'>
+                    {movie.Title}
+                </h2>
+
+                {movie.Year && (
+                    <p className='text-sm text-gray-500'>
+                        {movie.Year}
+                    </p>
+                )}
+            </div>
         </div>
 
         <button
-        onClick={() => deleteMovie(movie.id)}
+        onClick={() => deleteMovie(movie.imdbID)}
         className='bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600 transition'>Delete</button>
     </div>
     </>
