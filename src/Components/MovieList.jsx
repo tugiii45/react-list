@@ -17,7 +17,7 @@ function MovieList() {
 
             try {
                 const response = await fetch(
-                `http://www.omdbapi.com/?s=${searchTerm}&apikey=1b0b0c7e`
+                `https://www.omdbapi.com/?s=${searchTerm}&apikey=1b0b0c7e`
                 );
 
 
@@ -27,7 +27,7 @@ function MovieList() {
                     const detailedMovies = await Promise.all(
                         data.Search.map(async (movie) => {
                             const response = await fetch(
-                                `http://www.omdbapi.com/?i=${movie.imdbID}&apikey=1b0b0c7e`
+                                `https://www.omdbapi.com/?i=${movie.imdbID}&apikey=1b0b0c7e`
                             );
                             
                             return await response.json();
